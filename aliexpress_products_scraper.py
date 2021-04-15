@@ -87,7 +87,7 @@ for el in products:
     prods.append(di)
     di = {}
 
-
+# get product specifications
 for prod in prods:
     link = prod['prod_link']
     specs = get_product_specs(browser, link)
