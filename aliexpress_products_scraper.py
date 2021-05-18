@@ -13,8 +13,8 @@ from prod_specs import get_product_specs
 ##################################################################################################
 ##################################################################################################
 # variables to change according to preferences
-myUrl = 'https://www.aliexpress.com/category/5090301/cellphones.html?spm=a2g0o.home.103.3.18b32145ttFVW1&site=glo&pvId=190-361828&attrRel=or'
-output_file = 'output.json'
+myUrl = 'https://www.aliexpress.com/category/702/laptops.html?spm=a2g0o.home.104.10.650c2145mik6Dq'
+output_file = 'laptops.json'
 ##################################################################################################
 ##################################################################################################
 
@@ -37,6 +37,8 @@ reviews = []
 nb_solds = []
 thumbnail_links = []
 prod_links = []
+
+print('Finding products, please wait')
 
 for page_nb in range(1, 2):
 
@@ -91,13 +93,21 @@ for el in products:
     di = {}
 
 # get product specifications
+prod_no = 1
+prod_total = len(prods)
+print('Found {} products'.format(len(prods)))
+
 for prod in prods:
     link = prod['prod_link']
     specs = get_product_specs(browser, link)
     prod['image_link'], prod['specifications'], prod['description'], prod['reviews'] = specs
+
+    print('Scraped {}/{} of products'.format(prod_no, prod_total))
+    prod_no += 1
+
 browser.close()
 
 #print(prods)
-print(len(prods))
+print('Finished scraping {} products'.format(len(prods)))
 with open(output_file, 'w', encoding='utf8') as fout:
     json.dump(prods, fout, ensure_ascii=False)

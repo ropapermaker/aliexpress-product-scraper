@@ -148,6 +148,3 @@ if __name__=='__main__':
     print(link)
     print(description)
     print(reviews)
-
-    with open('filetest.json', 'w') as f:
-        f.write(description)
