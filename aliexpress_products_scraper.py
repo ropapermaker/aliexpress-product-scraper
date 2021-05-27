@@ -7,6 +7,7 @@ from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+import re
 
 from prod_specs import get_product_specs
 
@@ -15,6 +16,7 @@ from prod_specs import get_product_specs
 # variables to change according to preferences
 myUrl = 'https://www.aliexpress.com/category/702/laptops.html?spm=a2g0o.home.104.10.650c2145mik6Dq'
 output_file = 'laptops.json'
+category = 'laptop'
 ##################################################################################################
 ##################################################################################################
 
@@ -88,7 +90,21 @@ di = {}
 
 # transfer data to dict
 for el in products:
-    di['title'], di['store'], di['price'], di['review'], di['nb_sold'], di['thumbnail_link'], di['prod_link'] = el
+    di['title'], di['store'], temp_price, temp_review, temp_nb_sold, di['thumbnail_link'], di['prod_link'] = el
+    
+    # turn price and number sold to numbers for mongodb
+
+    # price may be in format: 25,125.24 -> 25125.24
+    temp_price_lst = re.findall('\d+', temp_price)
+    el = ''.join(temp_price_lst[:-1])
+    di['price'] = float(el + '.' + temp_price_lst[-1])
+
+    # reviews in float format: 4.5
+    di['review'] = float(temp_review)
+    
+    # number sold in int format: 22
+    di['nb_sold'] = int(re.findall('\d+', temp_nb_sold)[0])
+    di['category'] = category
     prods.append(di)
     di = {}
 

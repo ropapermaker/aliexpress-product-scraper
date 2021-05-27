@@ -90,12 +90,17 @@ def get_product_specs(driver, url):
 
     ########################################################################
     # fake reviews
-    review1 = {'customer_name':'John Doe1', 'rating':'4.5', 'review':'Good Product!'}
-    review2 = {'customer_name':'John Doe2', 'rating':'4.6', 'review':'Good Product!'}
-    review3 = {'customer_name':'John Doe3', 'rating':'4.3', 'review':'Good Product!'}
-    review4 = {'customer_name':'John Doe4', 'rating':'4.1', 'review':'Good Product!'}
-    review5 = {'customer_name':'John Doe5', 'rating':'4.8', 'review':'Good Product!'}
-    reviews = [review1, review2, review3, review4, review5]
+    review1 = {'customer_name':'John Doe1', 'rating':4.5, 'review':'Good Product!'}
+    review2 = {'customer_name':'John Doe2', 'rating':4.6, 'review':'Good Product!'}
+    review3 = {'customer_name':'John Doe3', 'rating':4.3, 'review':'Good Product!'}
+    review4 = {'customer_name':'John Doe4', 'rating':4.1, 'review':'Good Product!'}
+    review5 = {'customer_name':'John Doe5', 'rating':4.8, 'review':'Good Product!'}
+    review6 = {'customer_name':'John Doe6', 'rating':4.5, 'review':'Good Product!'}
+    review7 = {'customer_name':'John Doe7', 'rating':4.6, 'review':'Good Product!'}
+    review8 = {'customer_name':'John Doe8', 'rating':4.3, 'review':'Good Product!'}
+    review9 = {'customer_name':'John Doe9', 'rating':4.1, 'review':'Good Product!'}
+    review10 = {'customer_name':'John Doe10', 'rating':4.8, 'review':'Good Product!'}
+    reviews = [review1, review2, review3, review4, review5, review6, review7, review8, review9, review10]
     # print(reviews)
 
 
